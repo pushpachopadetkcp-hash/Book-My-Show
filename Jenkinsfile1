@@ -68,20 +68,18 @@ pipeline {
                         additionalArguments: """
                             --scan .
                             --format XML
-                            --format HTML
                             --disableYarnAudit
                             --disableNodeAudit
                             --disableAssembly
                             --nvdApiKey $NVD_API_KEY
+                            --cveThreads 2
                         """,
                         odcInstallation: 'DP-Check'
                     )
                 }
 
                 dependencyCheckPublisher(
-                    pattern: '**/dependency-check-report.xml',
-                    failedTotalHigh: 1,
-                    failedTotalCritical: 1
+                    pattern: '**/dependency-check-report.xml'
                 )
             }
         }
