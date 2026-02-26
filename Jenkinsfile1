@@ -93,8 +93,8 @@ pipeline {
                 script {
                     withDockerRegistry(credentialsId: 'docker') {
                         sh '''
-                        docker build --no-cache -t kastrov/bms:latest -f bookmyshow-app/Dockerfile bookmyshow-app
-                        docker push kastrov/bms:latest
+                        docker build --no-cache -t pushpa13chopade/bms:latest -f bookmyshow-app/Dockerfile bookmyshow-app
+                        docker push pushpa13chopade/bms:latest
                         '''
                     }
                 }
