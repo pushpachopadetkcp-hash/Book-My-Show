@@ -70,7 +70,7 @@ pipeline {
                         --format HTML
                         --disableYarnAudit
                         --disableNodeAudit
-                        --noupdate
+                        --disableAssembly
                     ''',
                     odcInstallation: 'DP-Check'
                 )
