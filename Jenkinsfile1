@@ -70,6 +70,7 @@ pipeline {
                         --format HTML
                         --disableYarnAudit
                         --disableNodeAudit
+                        --noupdate
                     ''',
                     odcInstallation: 'DP-Check'
                 )
@@ -107,7 +108,7 @@ pipeline {
                 docker stop bms || true
                 docker rm bms || true
 
-                docker run -d --restart=always --name bms -p 3000:3000 kastrov/bms:latest
+                docker run -d --restart=always --name bms -p 3000:3000 pushpa13chopade/bms:latest
 
                 sleep 5
                 docker ps -a
