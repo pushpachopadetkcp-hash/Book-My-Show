@@ -4,7 +4,7 @@ pipeline {
 
     tools {
         jdk 'jdk17'
-        nodejs 'node18'   // Changed from node23 (use LTS version)
+        nodejs 'node18'
     }
 
     environment {
@@ -41,7 +41,7 @@ pipeline {
         stage('Quality Gate') {
             steps {
                 script {
-                    waitForQualityGate abortPipeline: true   // Fail if Quality Gate fails
+                    waitForQualityGate abortPipeline: true
                 }
             }
         }
@@ -91,7 +91,7 @@ pipeline {
         stage('Docker Build & Push') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
+                    withDockerRegistry(credentialsId: 'docker') {
                         sh '''
                         docker build --no-cache -t kastrov/bms:latest -f bookmyshow-app/Dockerfile bookmyshow-app
                         docker push kastrov/bms:latest
@@ -123,10 +123,10 @@ pipeline {
                 attachLog: true,
                 subject: "Build ${currentBuild.result}: ${env.JOB_NAME}",
                 body: """
-                Project: ${env.JOB_NAME}
-                Build Number: ${env.BUILD_NUMBER}
-                URL: ${env.BUILD_URL}
-                """,
+Project: ${env.JOB_NAME}
+Build Number: ${env.BUILD_NUMBER}
+URL: ${env.BUILD_URL}
+""",
                 to: 'kastrokiran@gmail.com',
                 attachmentsPattern: 'trivyfs.txt'
             )
