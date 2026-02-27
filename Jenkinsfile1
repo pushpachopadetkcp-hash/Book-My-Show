@@ -65,14 +65,15 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_API_KEY')]) {
                     dependencyCheck(
-                        additionalArguments: """
+                        additionalArguments: '''
                             --scan .
                             --format XML
                             --disableYarnAudit
                             --disableNodeAudit
                             --disableAssembly
-                            --nvdApiKey ${NVD_API_KEY}
-                        """,
+                            --nvdApiKey $NVD_API_KEY
+                            --noupdate
+                        ''',
                         odcInstallation: 'DP-Check'
                     )
                 }
