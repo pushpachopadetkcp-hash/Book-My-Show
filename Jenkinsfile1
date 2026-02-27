@@ -129,7 +129,7 @@ Project: ${env.JOB_NAME}
 Build Number: ${env.BUILD_NUMBER}
 URL: ${env.BUILD_URL}
 """,
-                to: 'kastrokiran@gmail.com',
+                to: 'pushpachopade.tkcp@gmail.com',
                 attachmentsPattern: 'trivyfs.txt'
             )
         }
